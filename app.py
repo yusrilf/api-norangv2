@@ -70,7 +70,7 @@ def deteksi_nopol():
     nopol = process_ocr_results(results, img.shape)
 
     # Return the result as JSON
-    return jsonify({"nopol": nopol})
+    return jsonify({"result": nopol})
 
 
 # Route for 'deteksirangka'
@@ -96,7 +96,7 @@ def deteksi_rangka():
 
 
 # Route for 'predict-vin'
-@app.route('/predict-vin', methods=['POST'])
+@app.route('/deteksinosin', methods=['POST'])
 def predict_vin():
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
@@ -114,7 +114,7 @@ def predict_vin():
         # Call the VIN detection function
         vin_sequence = detect_vin(source=file_path)
 
-        return jsonify({'predicted_vin': vin_sequence}), 200
+        return jsonify({'result': vin_sequence}), 200
 
 
 # Main function to run the app
